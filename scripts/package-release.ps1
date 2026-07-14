@@ -11,7 +11,7 @@ $dist = Join-Path $repoRoot "dist"
 $validator = Join-Path $PSScriptRoot "validate-skill.ps1"
 
 & $validator
-if ($LASTEXITCODE -ne 0) { throw "Skill validation failed." }
+if ($LASTEXITCODE) { throw "Skill validation failed." }
 
 if (Test-Path -LiteralPath $dist) { Remove-Item -LiteralPath $dist -Recurse -Force }
 New-Item -ItemType Directory -Path $dist | Out-Null
